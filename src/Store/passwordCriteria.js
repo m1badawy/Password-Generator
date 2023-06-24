@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialPasswordCriteriaState = {
-  includeUpperCaseLetter: true,
-  includeLowerCaseLetter: true,
   includeSpecialCharacter: true,
+  includeNumber: true,
+  includeLowerCaseLetter: true,
+  includeUpperCaseLetter: true,
   excludeAmbiguousCharacter: false,
   passwordLength: 8,
+  generatedPassword:null,
+  passwordGuide:null,
 };
 
 const passwordCriteriaSlice = createSlice({
@@ -21,11 +24,20 @@ const passwordCriteriaSlice = createSlice({
     setSpecialCharacter(state) {
       state.includeSpecialCharacter = !state.includeSpecialCharacter;
     },
+    setIncludeNumber(state) {
+        state.includeNumber = !state.includeNumber;
+      },
     setAmbiguousCharacter(state) {
       state.excludeAmbiguousCharacter = !state.excludeAmbiguousCharacter;
     },
     setPasswordLength(state, action) {
       state.passwordLength = action.payload;
+    },
+    setGeneratedPasswordGuidance(state, action) {
+      state.passwordGuide = action.payload;
+    },
+    setGeneratedPassword(state, action) {
+      state.generatedPassword = action.payload;
     },
   },
 });
